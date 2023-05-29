@@ -1,46 +1,66 @@
 //TODO: make init the world
-updateCountryInfo(12);
-updateCountrySpiral('Algeria',12);
+updateCountryInfo(4);
+updateCountrySpiral(4);
+//plot_bgcolor: "rgba(0, 0, 0, 0)", // Set the plot background color to transparent
+//paper_bgcolor: "rgba(0, 0, 0, 0)" // Set the paper background color to transparent
+// Clear existing spiral plot
+//Plotly.purge('mySpiral');
 
 // Define a function to update the country information and display the spiral plot
-function updateCountrySpiral(countryName, countryID) {
+function updateCountrySpiral( countryID) {
     // Read the data
     d3.csv("https://raw.githubusercontent.com/lsps9150125/MIS588_Data_Visualize/main/GlobalLandTemperaturesByCountry.csv").then(function(data) {
-        // Filter the data based on the selected country
-        var filteredData = data.filter(function(d) {
-            return d.id === countryID;
-        });
+        // filter by country
+        data = data.filter(function(d) {
+            return d.id == countryID;
+        })
+        var sYear = 1300;
+        var eYear = 1900;
+        data = data.filter(function(d) {
+            y = parseInt(d.dt) ;
+            return (y > sYear && y < eYear);
+        })
 
-        var sYear = 1700;
-        var eYear = 1920;
-        filteredData = filteredData.filter(function(d) {
-            var year = parseInt(d.dt.split('-')[0]);
-            return (year > sYear && year < eYear);
-        });
-
-        var pointCount = filteredData.length;
+        var pointCount = data.length;
         var i, r;
 
+        var dt = [];
+        var txt = [];
         var x = [];
         var y = [];
         var z = [];
         var c = [];
 
-        for(i = 0; i < pointCount; i++) {
-            // Encode temperature values
-            r = filteredData[i].AverageTemperature + 1;
-            if (r === '')
+        for(i = 0; i < pointCount; i++)
+        {
+            // things encode with temperature
+            r = data[i].AverageTemperature + 1;
+            if(r === '')
                 continue;
             c.push(r);
 
-            var mon = parseInt(filteredData[i].dt.split('-')[1]);
-            var year = parseInt(filteredData[i].dt.split('-')[0]);
-            // Encode coordinates
-            x.push(r * Math.cos(mon / 6 * Math.PI));
-            y.push(r * Math.sin(mon / 6 * Math.PI));
-            z.push((year - 1755 + mon / 12) / 2);
+            mon = parseInt(data[i].dt.split('-')[1])
+            year = parseInt(data[i].dt.split('-')[0])
+            // things endeo with date
+            dt.push(data[i].dt.split('-')[0])
+            txt.push({dt:data[i].dt.split('-')[0] , tmp:data[i].AverageTemperature})
+            x.push(r * Math.cos(mon/6 * Math.PI) );
+            y.push(r * Math.sin(mon/6 * Math.PI) );
+            z.push((year + mon/12));
         }
 
+        var sliderSteps = [];
+        for (i = 0; i < pointCount; i++) {
+            sliderSteps.push({
+                method: 'animate',
+                label: dt[i],
+                args: [[dt[i]], {
+                    mode: 'immediate',
+                    transition: {duration: 100},
+                    frame: {duration: 100, redraw: false},
+                }]
+            });
+        }
         var layout = {
             title: {
                 text: countryID,
@@ -51,28 +71,48 @@ function updateCountrySpiral(countryName, countryID) {
                 yref: 'paper',
                 automargin: true,
             },
-            showlegend: false,
-            //plot_bgcolor: "rgba(0, 0, 0, 0)", // Set the plot background color to transparent
-            //paper_bgcolor: "rgba(0, 0, 0, 0)" // Set the paper background color to transparent
-
+            scene: {
+                xaxis:{title: '', visible: false, showgrid: false},
+                yaxis:{title: '', visible: false, showgrid: false},
+                zaxis:{title: 'Year'},
+            },
+            // sliders: [{
+            //     pad: {t: 35},
+            //     currentvalue: {
+            //       visible: true,
+            //       prefix: 'Year:',
+            //       xanchor: 'right',
+            //       font: {size: 20, color: '#666'}
+            //     },
+            //     steps: sliderSteps
+            // }],
+            showlegend: false
         };
 
-        // Clear existing spiral plot
         Plotly.purge('mySpiral');
 
-        // Update the spiral plot with the new data
-        Plotly.newPlot('mySpiral', [{
-            type: 'scatter3d',
-            mode: 'lines',
-            x: x,
-            y: y,
-            z: z,
-            opacity: 0.7,
-            line: {
-                width: 10,
-                color: c,
-                colorscale: 'Inferno'
-            } // Color scale
-        }], layout);
+        Plotly.newPlot('mySprial', [{
+                type: 'scatter3d',
+                mode: 'lines',
+                x: x,
+                y: y,
+                z: z,
+                text: txt,
+                hovertemplate:
+                    "<b>Year %{text.dt}</b><br><br>" +
+                    "Temperature: %{text.tmp}°C" +
+                    "<extra></extra>",
+                opacity: 0.7,
+                line: {
+                    width: 10,
+                    color: c,
+                    colorscale: 'Inferno'}, //color scale
+                transform: {
+                    type: 'filter',
+                    target: z,
+                    operation: '<',
+                    value: 0}
+            }],
+            layout);
     });
 }
