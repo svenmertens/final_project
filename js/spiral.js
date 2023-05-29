@@ -62,7 +62,7 @@ function updateCountrySpiral( countryID) {
             });
         }
         var layout = {
-            title: {
+            /*title: {
                 text: countryID,
                 font: {
                     family: 'Courier New, monospace',
@@ -70,7 +70,7 @@ function updateCountrySpiral( countryID) {
                 },
                 yref: 'paper',
                 automargin: true,
-            },
+            },*/
             scene: {
                 xaxis:{title: '', visible: false, showgrid: false},
                 yaxis:{title: '', visible: false, showgrid: false},
