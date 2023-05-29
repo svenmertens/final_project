@@ -73,7 +73,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                             tooltip.transition()
                                 .duration(200)
                                 .style("opacity", .9);
-                            tooltip.html(d.currentTarget.__data__.City + "<br/>" + d.currentTarget.__data__.AverageTemperature + "&#8451;")
+                            tooltip.html(d.currentTarget.__data__.City + "<br/>" + Math.round(d.currentTarget.__data__.AverageTemperature) + "&#8451;")
                                 .style("left", (d.screenX) + "px") //todo: show on better place
                                 .style("top", (d.screenY) + "px");
                         })
