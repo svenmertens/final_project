@@ -52,6 +52,10 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                     // Update the data binding for the circles
                     circles = g.selectAll("circle").data(filteredData);
 
+                    var tooltip = d3.select("body").append("div")
+                        .attr("class", "tooltip")
+                        .style("opacity", 0);
+
                     circles.enter()
                         .append("circle")
                         .attr("cx", function (d) {
@@ -64,6 +68,19 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                         .style("opacity", 1)
                         .style("fill", function (d) {
                             return colorScale(+d.AverageTemperature);
+                        })
+                        .on("mouseover", function (d) {
+                            tooltip.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            tooltip.html(d.currentTarget.__data__.City + "<br/>" + d.currentTarget.__data__.AverageTemperature + "&#8451;")
+                                .style("left", (d.screenX) + "px") //todo: show on better place
+                                .style("top", (d.screenY) + "px");
+                        })
+                        .on("mouseout", function (d) {
+                            tooltip.transition()
+                                .duration(500)
+                                .style("opacity", 0);
                         });
 
                     circles.exit().remove();
@@ -109,6 +126,51 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                 d3.select(this).classed("hovered", false);
                 svg.select(".country-label").remove();
 
+            });
+
+        // Define the color legend
+        var legendData = d3.range(0, 31, 5); // Adjust the range and intervals as needed
+
+        // Define the color legend
+        var legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", "translate(20, " + (height - 250) + ")")
+            .style("position", "fixed")
+            .style("bottom", "20px")
+            .style("left", "20px")
+            .style("pointer-events", "none")
+            .style("z-index", "9999");
+
+
+        // Add color rectangles to the legend
+        legend.selectAll("rect")
+            .data(legendData)
+            .enter()
+            .append("rect")
+            .attr("x", 0)
+            .attr("y", function(d, i) {
+                return i * 20;
+            })
+            .attr("width", 20)
+            .attr("height", 20)
+            .style("fill", function(d) {
+                return colorScale(d);
+            });
+
+        // Add text labels to the legend
+        legend.selectAll("text")
+            .data(legendData)
+            .enter()
+            .append("text")
+            .attr("x", 30)
+            .attr("y", function(d, i) {
+                return i * 20 + 10;
+            })
+            .style("font-size", "12px")
+            .style("text-anchor", "start")
+            .style("dominant-baseline", "middle")
+            .text(function(d) {
+                return d;
             });
 
     });

@@ -55,3 +55,22 @@ path {
     text-anchor: middle;
     dominant-baseline: central;
 }
+
+.legend {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.legend rect {
+    width: 20px;
+    height: 20px;
+}
+
+.legend text {
+    font-size: 12px;
+    text-anchor: start;
+    dominant-baseline: middle;
+}
