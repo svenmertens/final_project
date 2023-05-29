@@ -2,7 +2,7 @@
 // todo: what to add next to this box? add difference in period?
 // todo: add capital?
 function updateCountryInfo(countryID) {
-    d3.dsv(';')("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/country_info.csv").then(function (data) {
+    d3.csv("country_info.csv").then(function (data) {
         console.log(data)
         const country = data.find(row => row.id === countryID.toString());
 
@@ -15,7 +15,7 @@ function updateCountryInfo(countryID) {
         var imageElement = document.getElementById('flag-id');
         imageElement.src = country.URL;
 
-        document.getElementById('info-id').textContent = country.info;
+        //document.getElementById('info-id').textContent = country.info;
 
 
 
