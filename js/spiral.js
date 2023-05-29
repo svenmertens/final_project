@@ -8,11 +8,11 @@ function updateCountrySpiral(countryName, countryID) {
     d3.csv("https://raw.githubusercontent.com/lsps9150125/MIS588_Data_Visualize/main/GlobalLandTemperaturesByCountry.csv").then(function(data) {
         // Filter the data based on the selected country
         var filteredData = data.filter(function(d) {
-            return d.Country === countryName;
+            return d.id === countryID;
         });
 
-        var sYear = 1800;
-        var eYear = 1820;
+        var sYear = 1700;
+        var eYear = 1920;
         filteredData = filteredData.filter(function(d) {
             var year = parseInt(d.dt.split('-')[0]);
             return (year > sYear && year < eYear);
@@ -52,8 +52,8 @@ function updateCountrySpiral(countryName, countryID) {
                 automargin: true,
             },
             showlegend: false,
-            plot_bgcolor: "rgba(0, 0, 0, 0)", // Set the plot background color to transparent
-            paper_bgcolor: "rgba(0, 0, 0, 0)" // Set the paper background color to transparent
+            //plot_bgcolor: "rgba(0, 0, 0, 0)", // Set the plot background color to transparent
+            //paper_bgcolor: "rgba(0, 0, 0, 0)" // Set the paper background color to transparent
 
         };
 
