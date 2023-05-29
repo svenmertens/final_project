@@ -1,0 +1,57 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /*Prevent scrollbars from appearing */
+    /*position: fixed; */
+}
+
+path {
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: grey;
+}
+
+#map-container {
+    position: relative;
+    height: calc(100% - 0px); /* Subtract the height of the slider */
+    /*overflow: hidden;*/ /* Prevent scrollbars from appearing */
+}
+
+/* Adjust the slider styles */
+#mySlider {
+    width: 50%;
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -40%;
+    z-index: 1;
+}
+
+.hovered {
+     fill: yellow;
+}
+
+
+/* Centered textbox styles */
+#textbox {
+    position: fixed;
+    width: 400px;
+    height: 3%;
+    bottom: 120px;
+    left: 50%;
+    margin-left: -10%;
+    background-color: white;
+    padding: 4px;
+    border: 1px solid black;
+    font-size: 32px;
+    color: black;
+    z-index: 2;
+}
+
+.country-label {
+    font-size: 12px;
+    fill: black;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
