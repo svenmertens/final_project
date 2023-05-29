@@ -43,7 +43,7 @@ function updateCountrySpiral( countryID) {
             year = parseInt(data[i].dt.split('-')[0])
             // things endeo with date
             dt.push(data[i].dt.split('-')[0])
-            txt.push({dt:data[i].dt.split('-')[0] , tmp:data[i].AverageTemperature})
+            txt.push({dt:data[i].dt.split('-')[0] , tmp: Math.round(data[i].AverageTemperature)})
             x.push(r * Math.cos(mon/6 * Math.PI) );
             y.push(r * Math.sin(mon/6 * Math.PI) );
             z.push((year + mon/12));
