@@ -86,12 +86,15 @@ function updateCountrySpiral( countryID) {
             //     },
             //     steps: sliderSteps
             // }],
-            showlegend: false
+            showlegend: false,
+            paper_bgcolor: "rgba(0, 0, 0, 0)", // Set the paper background color to transparent
+            plot_bgcolor: "rgba(0, 0, 0, 0)", // Set the plot background color to transparent
+
         };
 
         Plotly.purge('mySpiral');
 
-        Plotly.newPlot('mySprial', [{
+        Plotly.newPlot('mySpiral', [{
                 type: 'scatter3d',
                 mode: 'lines',
                 x: x,

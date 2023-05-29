@@ -95,7 +95,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                 updateCountryInfo(d.id);
 
 
-                updateCountrySpiral('Algeria',d.id);
+                updateCountrySpiral(d.id);
                 console.log(d.id)
                 // Change the page to the country view
                 routie('/country?name=' + encodeURIComponent(d.id)); //srcElement.__data__.id)); comment id depricated version
