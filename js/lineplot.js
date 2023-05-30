@@ -236,22 +236,32 @@ document.addEventListener("DOMContentLoaded", function() {
                 tooltip.style("opacity", 1)
             }
             const formatDate = d3.timeFormat("%Y-%m-%d");
-            var mousemove = function (event, d) {
-                // recover coordinate
+            var mousemove = function (event, d) {   // recover coordinate
                 const y0 = yScale.invert(d3.pointer(event, this)[1]);
                 const i = bisect(data, y0, 1);
-                selectedData = data[i]
+                selectedData = data[i];
 
                 focus
                     .attr("cx", xScale(selectedData.value))
-                    .attr("cy", yScale(selectedData.date))
+                    .attr("cy", yScale(selectedData.date));
+
+                const tooltipWidth = parseInt(tooltip.style("width"), 10);
+                const tooltipHeight = parseInt(tooltip.style("height"), 10);
+                const tooltipOffsetX = 10; // Adjust this value to set the horizontal offset of the tooltip
+
+                const tooltipX = xScale(selectedData.value) + tooltipOffsetX;
+                const tooltipY = yScale(selectedData.date);
+
+                const graphContainer = document.getElementById("world-view-id");
+                const containerRect = graphContainer.getBoundingClientRect();
+                const graphOffsetX = containerRect.left;
+                const graphOffsetY = containerRect.top;
 
                 tooltip
-
                     .html("Date: " + formatDate(selectedData.date) + ", Temperature: " + selectedData.value + "℃, Event: " + selectedData.war)
-                    .style("left", xScale(selectedData.value) + 2 + "px")
-                    .style("top", yScale(selectedData.date) + "px")
-                    .style("font-size", "12px")
+                    .style("left", (tooltipX + graphOffsetX) + "px")
+                    .style("top", (tooltipY + graphOffsetY - tooltipHeight / 2) + "px")
+                    .style("font-size", "12px");
             }
 
             var mouseout = function (event, d) {
