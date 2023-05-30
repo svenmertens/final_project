@@ -23,7 +23,7 @@ body
     position: relative;
     border-radius: 20px;
     transform-style: preserve-3d;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 .box .card
 {
