@@ -2,7 +2,7 @@
 // todo: what to add next to this box? add difference in period?
 // todo: add capital?
 function updateCountryInfo(countryID) {
-    d3.csv("info_data.csv").then(function (data) {
+    d3.csv("data/info_data.csv").then(function (data) {
         console.log(data)
         const country = data.find(row => row.id === countryID.toString());
 

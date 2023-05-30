@@ -70,13 +70,25 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                             return colorScale(+d.AverageTemperature);
                         })
                         .on("mouseover", function (d) {
+                            // Get the current mouse position
+                            var mousePosition = d3.pointer(d);
                             tooltip.transition()
                                 .duration(200)
                                 .style("opacity", .9);
                             tooltip.html(d.currentTarget.__data__.City + "<br/>" + Math.round(d.currentTarget.__data__.AverageTemperature) + "&#8451;")
-                                .style("left", (d.screenX) + "px") //todo: show on better place
-                                .style("top", (d.screenY) + "px");
-                        })
+                                .style("left", mousePosition[0] + "px")
+                                .style("top", mousePosition[1] + "px")
+                                .style("background-color", "rgba(255, 255, 255, 0.9)") // Gray semi-transparent background
+                                .style("padding", "8px")
+                                .style("border", "1px solid #fff") // Border style with 1px solid black
+                                .style("border-radius", "4px"); // Rounded corners with 4px radius
+
+                                })
+
+
+                    //style("left", d.screenX + "px") //todo: show on better place
+                                //.style("top", d.screenY + "px");
+
                         .on("mouseout", function (d) {
                             tooltip.transition()
                                 .duration(500)
