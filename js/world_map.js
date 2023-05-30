@@ -184,7 +184,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
             .style("text-anchor", "start")
             .style("dominant-baseline", "middle")
             .text(function(d) {
-                return d;
+                return d + " °C";
             });
 
     });
