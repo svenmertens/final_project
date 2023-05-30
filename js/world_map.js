@@ -81,9 +81,11 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                                 .style("background-color", "rgba(255, 255, 255, 0.9)") // Gray semi-transparent background
                                 .style("padding", "8px")
                                 .style("border", "1px solid #fff") // Border style with 1px solid black
-                                .style("border-radius", "4px"); // Rounded corners with 4px radius
+                                .style("border-radius", "4px") // Rounded corners with 4px radius
+                                .style("pointer-events", "none")
+                        })
 
-                                })
+                                
 
 
                     //style("left", d.screenX + "px") //todo: show on better place
