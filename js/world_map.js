@@ -65,7 +65,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                             return projection([+d.lon, +d.lat])[1];
                         })
                         .attr("r", 5)
-                        .style("opacity", 1)
+                        .style("opacity", 0.5)
                         .style("fill", function (d) {
                             return colorScale(+d.AverageTemperature);
                         })
