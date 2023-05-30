@@ -92,9 +92,9 @@ function updateCountrySpiral( countryID) {
 
         };
 
-        Plotly.purge('mySpiral');
+        Plotly.purge('spiral-id');
 
-        Plotly.newPlot('mySpiral', [{
+        Plotly.newPlot('spiral-id', [{
                 type: 'scatter3d',
                 mode: 'lines',
                 x: x,

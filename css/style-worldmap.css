@@ -5,6 +5,15 @@ body, html {
     overflow: hidden; /*Prevent scrollbars from appearing */
     /*position: fixed; */
 }
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+.header-id {
+    position: fixed;
+    top: 20px; /* Adjust the top position as per your preference */
+    left: 20px; /* Adjust the left position as per your preference */
+    font-size: 30px; /* Adjust the font size as per your preference */
+    font-family: 'Poppins', sans-serif;
+}
 
 path {
     stroke: white;
