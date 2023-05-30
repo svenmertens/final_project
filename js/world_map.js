@@ -132,12 +132,13 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                 routie('/country?name=' + encodeURIComponent(d.id)); //srcElement.__data__.id)); comment id depricated version
             })
             .on("mouseover", function() {
-                // Show the country name on hover
-                d3.select(this).classed("hovered", true);
+                d3.select(this)
+                    .style("fill", "yellow");
             })
             .on("mouseout", function() {
                 // Hide the country name on mouseout
-                d3.select(this).classed("hovered", false);
+                d3.select(this)
+                    .style("fill", "grey");
                 svg.select(".country-label").remove();
 
             });
