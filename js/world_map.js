@@ -85,7 +85,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                                 .style("pointer-events", "none")
                         })
 
-                                
+
 
 
                     //style("left", d.screenX + "px") //todo: show on better place

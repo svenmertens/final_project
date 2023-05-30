@@ -19,41 +19,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/routie/0.3.2/routie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/country_info.css">
     <link rel="stylesheet" type="text/css" href="css/style-worldmap.css">
 </head>
 
 <body>
-    <!-- TODO: add header: HeatMapocalypse
-    TODO: dont forget lineplot
-    -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-8">
-                <div class="header-id"> <h1>☀ Heat Mapocalypse</h1></div>
-                <div class="map-headline-id"><h3>meteorological stations over time</h3></div>
+<!-- TODO: add header: HeatMapocalypse
+TODO: dont forget lineplot
+-->
+<label class="switch" id="switch-id">
+    <input type="checkbox" id="toggleSwitch">
+    <span class="slider round"></span>
+</label>
 
-                <input type="range" name="mySlider" id="mySlider" min="0" max="3244" step="1" value="0">
-                <div id="textbox"></div>
-            
-                <div id="map-container"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <div class="header-id"><h1>☀ Heat Mapocalypse</h1></div>
+            <div class="map-headline-id"><h3>meteorological stations over time</h3></div>
 
-                <div id="color-legend">
-                    <div class="color-bar">
-                        <div class="color-bar-colors"></div>
-                    </div>
-                    <div class="legend-labels">
-                    </div>
+            <input type="range" name="mySlider" id="mySlider" min="0" max="3244" step="1" value="0">
+            <div id="textbox"></div>
+
+            <div id="map-container"></div>
+
+            <div id="color-legend">
+                <div class="color-bar">
+                    <div class="color-bar-colors"></div>
                 </div>
-
+                <div class="legend-labels">
+                </div>
             </div>
-            <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <div id="world-view-id" style="display: none;">
+                <p>ahoooooooooj</p>
+            </div>
+
+            <div id="country-view-id" >
                 <div class="box">
                     <div class="elements bg"><h3>Coutry info</h3></div>
-                    <div class="elements imgBox">            
+                    <div class="elements imgBox">
                         <img src="" alt="Nation flag here" id="flag-id">
                     </div>
                     <div class="elements name">
@@ -65,38 +75,41 @@
                     <div class="card"></div>
                 </div>
                 <div class="spiral-div">
-                <div class="spiral-header-id"><h3>Temperature development</h3></div>
-                <div >end of year</div>
-                <input type="text" id="datepicker">
-                <div id="spiral-id"></div>
+                    <div class="spiral-header-id"><h3>Temperature development</h3></div>
+                    <div>end of year</div>
+                    <input type="text" id="datepicker">
+                    <div id="spiral-id"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 <script src="js/country_box.js"></script>
 <script src="js/spiral.js"></script>
 <script src="js/world_map.js"></script>
+<script src="js/slider.js"></script>
+
 <script>
-    $(function() {
-        $( "#datepicker" ).datepicker();
+    $(function () {
+        $("#datepicker").datepicker();
     });
 </script>
 
 <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" 
-    integrity="sha512-RX/OFugt/bkgwRQg4B22KYE79dQhwaPp2IZaA/YyU3GMo/qY7GrXkiG6Dvvwnds6/DefCfwPTgCXnaC6nAgVYw==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer">
+        src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"
+        integrity="sha512-RX/OFugt/bkgwRQg4B22KYE79dQhwaPp2IZaA/YyU3GMo/qY7GrXkiG6Dvvwnds6/DefCfwPTgCXnaC6nAgVYw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
 </script>
 
-<script >
-	VanillaTilt.init(document.querySelector(".box"), {
-		max: 25,
-		speed: 400
-	});
-	
-	//It also supports NodeList
-	VanillaTilt.init(document.querySelectorAll(".box"));
+<script>
+    VanillaTilt.init(document.querySelector(".box"), {
+        max: 25,
+        speed: 400
+    });
+
+    //It also supports NodeList
+    VanillaTilt.init(document.querySelectorAll(".box"));
 </script>
