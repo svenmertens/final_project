@@ -36,15 +36,15 @@ body, html {
 /* Centered textbox styles */
 #textbox {
     position: fixed;
-    width: 400px;
-    height: 3%;
-    bottom: 120px;
-    left: 50%;
+    width: 280px;
+    height: 3.3%;
+    bottom: 135px;
+    left: 38%;
     margin-left: -10%;
     background-color: white;
     padding: 4px;
     border: 1px solid black;
-    font-size: 32px;
+    font-size: 24px;
     color: black;
     z-index: 2;
 }
