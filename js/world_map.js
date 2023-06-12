@@ -30,7 +30,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
         var textbox = d3.select("#textbox");
 
         // load and display the cities
-        d3.csv("../data/GlobalTemperatures1m.csv")
+        d3.csv("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/AverageTemperatures30cities.csv")
             .then(function (data) {
                 var circles;
 
@@ -64,7 +64,7 @@ d3.json("https://raw.githubusercontent.com/sajdoann/HeatMapocalypse/main/data/wo
                         .attr("cy", function (d) {
                             return projection([+d.lon, +d.lat])[1];
                         })
-                        .attr("r", 5)
+                        .attr("r", 4)
                         .style("opacity", 0.5)
                         .style("fill", function (d) {
                             return colorScale(+d.AverageTemperature);
